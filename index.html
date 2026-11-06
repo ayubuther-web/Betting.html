@@ -3,66 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BET RWANDA - V2</title>
+<title>BET RWANDA - V3 ADMIN</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a0a12;color:#fff;padding-bottom:20px}
+:root{--main:#00ff88;--second:#ffcc00;--bg:#0a0a12;--card:#1a1a28}
+body{background:var(--bg);color:#fff;padding-bottom:20px}
 .top{background:#13131f;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99}
-.logo{font-weight:900;font-size:19px;color:#00ff88}.logo span{color:#ffcc00}
-.bal{background:#00ff88;color:#000;padding:7px 12px;border-radius:20px;font-weight:800;font-size:13px;cursor:pointer}
+.logo{font-weight:900;font-size:19px;color:var(--main)}.logo span{color:var(--second)}
+.bal{background:var(--main);color:#000;padding:7px 12px;border-radius:20px;font-weight:800;font-size:13px;cursor:pointer}
 .nav{display:flex;gap:5px;background:#13131f;padding:8px;overflow-x:auto;position:sticky;top:53px;z-index:98}
 .nav button{flex:1;min-width:78px;padding:10px;border:none;border-radius:10px;background:#222;color:#fff;font-weight:700;cursor:pointer}
-.nav button.active{background:#00ff88;color:#000}
+.nav button.active{background:var(--main);color:#000}
 .page{display:none;padding:15px}.page.active{display:block}
-.card{background:#1a1a28;border-radius:14px;padding:15px;margin-bottom:12px}
-input,select{width:100%;padding:13px;border-radius:10px;border:none;background:#222;color:#fff;margin:8px 0;font-size:15px}
-.btn-main{width:100%;padding:14px;background:#00ff88;border:none;border-radius:10px;font-weight:900;font-size:16px;margin-top:8px;cursor:pointer}
-.btn-yellow{background:#ffcc00}
+.card{background:var(--card);border-radius:14px;padding:15px;margin-bottom:12px}
+input,select,textarea{width:100%;padding:13px;border-radius:10px;border:none;background:#222;color:#fff;margin:8px 0;font-size:15px}
+.btn-main{width:100%;padding:14px;background:var(--main);border:none;border-radius:10px;font-weight:900;font-size:16px;margin-top:8px;cursor:pointer;color:#000}
+.btn-yellow{background:var(--second)}
 .avi-box{background:#000;border-radius:14px;height:200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
 #plane{font-size:50px;position:absolute;left:20px;bottom:20px;transition:all .1s}
-#multi{font-size:42px;font-weight:900;color:#00ff88;z-index:2}
+#multi{font-size:42px;font-weight:900;color:var(--main);z-index:2}
 .avi-btns{display:flex;gap:10px;margin-top:12px}.avi-btns button{flex:1;padding:14px;border:none;border-radius:10px;font-weight:900;font-size:16px;cursor:pointer}
 .match{display:flex;justify-content:space-between;align-items:center;background:#222;padding:12px;border-radius:10px;margin-bottom:8px}
 .odds button{background:#333;color:#fff;border:none;padding:8px 12px;border-radius:8px;font-weight:700;cursor:pointer}
-.odds button.sel{background:#00ff88;color:#000}
+.odds button.sel{background:var(--main);color:#000}
 .badge{background:#ff2a2a;padding:2px 7px;border-radius:5px;font-size:11px}
 .hist{font-size:13px;color:#ccc;background:#222;padding:10px;border-radius:8px;margin-top:6px}
 .auth-box{max-width:400px;margin:30px auto;padding:20px}
 .small{font-size:12px;color:#aaa;text-align:center;margin-top:10px}
+.ad-banner{border-radius:14px;padding:20px;margin-bottom:12px;text-align:center;position:relative;overflow:hidden}
+.ad-banner img{width:100%;border-radius:10px;max-height:150px;object-fit:cover}
+.admin-sec{border:2px solid #ff2a2a;border-radius:14px;padding:15px;margin-bottom:12px;background:#1a1a28}
+.color-row{display:flex;gap:8px;align-items:center}
+.color-row input{height:45px;padding:2px;cursor:pointer}
+.tab-btn{padding:8px 12px;border:none;border-radius:8px;background:#333;color:#fff;font-weight:700;cursor:pointer}
+.tab-btn.active{background:var(--main);color:#000}
 </style>
 </head>
 <body>
 
-<!-- LOGIN / REGISTER -->
 <div id="authPage">
 <div class="auth-box">
-<div style="text-align:center;font-size:28px;font-weight:900;color:#00ff88">BET<span style="color:#ffcc00">RWANDA</span> 🇷🇼</div>
-<p style="text-align:center;color:#aaa;margin:10px 0">V2 - MVP NYAYO</p>
+<div style="text-align:center;font-size:28px;font-weight:900;color:var(--main)" id="authLogo">BET<span style="color:var(--second)">RWANDA</span> 🇷🇼</div>
+<p style="text-align:center;color:#aaa;margin:10px 0">V3 - ADMIN CONTROL</p>
 <div class="card">
 <h3 id="authTitle">🔐 INJIRA</h3>
 <input id="aName" placeholder="Amazina yawe (Register gusa)" style="display:none">
 <input id="aPhone" placeholder="Numero - 078XXXXXXX" type="tel">
 <input id="aPass" placeholder="Password" type="password">
 <button class="btn-main" onclick="doAuth()" id="authBtn">INJIRA →</button>
-<p class="small" onclick="toggleAuth()" id="authToggle" style="cursor:pointer;color:#00ff88">Nta account ufite? Iyandikishe hano →</p>
-<p class="small">Demo: Koresha numero iyo ari yo yose + password iyo ari yo yose.<br>Uwa mbere winjiye ahabwa <b>10,000 RWF BONUS</b></p>
+<p class="small" onclick="toggleAuth()" id="authToggle" style="cursor:pointer;color:var(--main)">Nta account ufite? Iyandikishe hano →</p>
+<p class="small">Uwa mbere winjiye ahabwa <b id="welcomeBonusTxt">10,000 RWF BONUS</b></p>
 </div>
-<div class="card" style="text-align:center">
-<b>👑 ADMIN TEST:</b><br>Numero: <b>0780000000</b> | Pass: <b>admin123</b><br><span style="font-size:12px;color:#aaa">Kanda injira ubone Admin Panel</span>
-</div>
+<div class="card" style="text-align:center"><b>👑 ADMIN:</b><br>0780000000 / admin123</div>
 </div>
 </div>
 
-<!-- APP -->
 <div id="appPage" style="display:none">
-<div class="top">
-<div class="logo">BET<span>RWANDA</span> 🇷🇼</div>
-<div class="bal" id="balTop" onclick="showPage('wallet')">💰 0 RWF</div>
-</div>
-<div style="padding:8px 15px;display:flex;justify-content:space-between;align-items:center;background:#13131f">
-<span id="userName" style="font-size:13px">👤 Guest</span>
-<span onclick="logout()" style="font-size:13px;color:#ff5555;cursor:pointer">Sohoka ⏏</span>
-</div>
+<div class="top"><div class="logo" id="topLogo">BET<span>RWANDA</span> 🇷🇼</div><div class="bal" id="balTop" onclick="showPage('wallet')">💰 0 RWF</div></div>
+<div style="padding:8px 15px;display:flex;justify-content:space-between;background:#13131f"><span id="userName" style="font-size:13px">👤 Guest</span><span onclick="logout()" style="font-size:13px;color:#ff5555;cursor:pointer">Sohoka ⏏</span></div>
 <div class="nav">
 <button class="active" onclick="showPage('home',this)">🏠 Home</button>
 <button onclick="showPage('sport',this)">⚽ Sport</button>
@@ -73,222 +71,194 @@ input,select{width:100%;padding:13px;border-radius:10px;border:none;background:#
 </div>
 
 <div id="home" class="page active">
-<div class="card" style="background:linear-gradient(135deg,#00ff88,#00aaff);color:#000">
-<h2>🎁 BONUS 100%!</h2><p>Deposit yawe ya mbere - tuguhaye double!</p>
+<div id="adsArea"></div>
+<div class="card" style="background:linear-gradient(135deg,var(--main),#00aaff);color:#000" id="bonusCard">
+<h2 id="bonusTitle">🎁 BONUS 100%!</h2><p id="bonusDesc">Deposit yawe ya mbere - tuguhaye double!</p>
 <button onclick="showPage('wallet',document.querySelectorAll('.nav button')[4])" style="margin-top:10px;padding:10px 20px;border:none;border-radius:8px;font-weight:900;background:#000;color:#fff">DEPOSIT NONAHA →</button>
 </div>
-<div class="card"><h3>✈️ Aviator - Live</h3><p>Abantu <span id="liveCount">1,247</span> bari gukina nonaha</p><p style="color:#00ff88;font-weight:900;font-size:22px;margin-top:5px">Multiplier: <span id="liveMulti">2.45x</span> 🔥</p><button class="btn-main" onclick="showPage('avi',document.querySelectorAll('.nav button')[2])">KINA AVIATOR →</button></div>
-<div class="card"><h3>⚽ Imikino Iri Gukina</h3><p>APR FC vs Rayon Sports - <span class="badge">LIVE 65'</span></p><p style="margin-top:8px">Score: 1 - 0</p></div>
+<div class="card"><h3>✈️ Aviator - Live</h3><p>Abantu <span id="liveCount">1,247</span> bari gukina</p><p style="color:var(--main);font-weight:900;font-size:22px;margin-top:5px">Multiplier: <span id="liveMulti">2.45x</span> 🔥</p><button class="btn-main" onclick="showPage('avi',document.querySelectorAll('.nav button')[2])">KINA AVIATOR →</button></div>
 <div class="card"><h3>📜 Amateka Yawe</h3><div id="myHist">Nta mateka...</div></div>
 </div>
 
 <div id="sport" class="page">
 <h3 style="margin-bottom:12px">⚽ Football - Uyu Munsi</h3>
-<div class="card"><p><b>APR FC vs Rayon Sports</b> <span class="badge">LIVE</span></p>
-<div class="match"><span>APR (1)</span><div class="odds"><button onclick="addBet(this,'APR',1.85)">1.85</button></div></div>
-<div class="match"><span>Draw (X)</span><div class="odds"><button onclick="addBet(this,'Draw APR',3.20)">3.20</button></div></div>
-<div class="match"><span>Rayon (2)</span><div class="odds"><button onclick="addBet(this,'Rayon',4.10)">4.10</button></div></div></div>
-<div class="card"><p><b>Man City vs Arsenal</b> - 20:00</p>
-<div class="match"><span>Man City (1)</span><div class="odds"><button onclick="addBet(this,'Man City',2.10)">2.10</button></div></div>
-<div class="match"><span>Draw (X)</span><div class="odds"><button onclick="addBet(this,'Draw City',3.40)">3.40</button></div></div>
-<div class="match"><span>Arsenal (2)</span><div class="odds"><button onclick="addBet(this,'Arsenal',3.00)">3.00</button></div></div></div>
-<div class="card"><p><b>Real Madrid vs Barcelona</b> - 22:00</p>
-<div class="match"><span>Real (1)</span><div class="odds"><button onclick="addBet(this,'Real',2.50)">2.50</button></div></div>
-<div class="match"><span>Draw (X)</span><div class="odds"><button onclick="addBet(this,'Draw Real',3.60)">3.60</button></div></div>
-<div class="match"><span>Barca (2)</span><div class="odds"><button onclick="addBet(this,'Barca',2.80)">2.80</button></div></div></div>
-<div class="card" style="background:#ffcc00;color:#000;display:none" id="slipCard"><b id="slipTxt">Bet: -</b><br><input id="betAmt" type="number" value="1000" placeholder="Amafaranga" style="background:#fff;color:#000"><button class="btn-main" style="background:#000;color:#fff" onclick="placeBet()">PLACE BET →</button></div>
+<div id="matchesArea"></div>
+<div class="card" style="background:var(--second);color:#000;display:none" id="slipCard"><b id="slipTxt">Bet: -</b><br><input id="betAmt" type="number" value="1000" style="background:#fff;color:#000"><button class="btn-main" style="background:#000;color:#fff" onclick="placeBet()">PLACE BET →</button></div>
 </div>
 
 <div id="avi" class="page">
-<div class="card"><h3>✈️ AVIATOR</h3><div class="avi-box"><div id="plane">✈️</div><div id="multi">1.00x</div></div><p id="aviMsg" style="text-align:center;margin:10px 0;color:#ffcc00;font-weight:700">Kanda BET utangire!</p><input id="aviAmt" type="number" value="500"><div class="avi-btns"><button style="background:#ffcc00" id="betBtn" onclick="startAvi()">BET ✈️</button><button style="background:#00ff88" id="cashBtn" onclick="cashOut()" disabled>CASHOUT 💰</button></div></div>
-<div class="card"><h4>📜 Amateka</h4><p id="history">1.24x, 3.56x, 1.02x, 8.90x, 2.15x</p></div>
+<div class="card"><h3>✈️ AVIATOR</h3><div class="avi-box"><div id="plane">✈️</div><div id="multi">1.00x</div></div><p id="aviMsg" style="text-align:center;margin:10px 0;color:var(--second);font-weight:700">Kanda BET utangire!</p><input id="aviAmt" type="number" value="500"><div class="avi-btns"><button style="background:var(--second)" id="betBtn" onclick="startAvi()">BET ✈️</button><button style="background:var(--main)" id="cashBtn" onclick="cashOut()" disabled>CASHOUT 💰</button></div></div>
 </div>
 
 <div id="casino" class="page">
-<div class="card" style="text-align:center"><h3>🎰 SLOTS</h3><div style="font-size:45px;padding:20px 0" id="slots">🍒 🍋 🍇</div><p id="slotMsg">Kanda SPIN ukine!</p><input id="slotAmt" type="number" value="500"><button class="btn-main" onclick="spin()">SPIN 🎰</button></div>
-<div class="card"><h3>🎲 DICE</h3><p>Numero > 50 utsinze x2</p><button class="btn-main btn-yellow" style="color:#000" onclick="dice()">ROLL DICE 🎲</button><p id="diceRes" style="text-align:center;margin-top:10px"></p></div>
+<div class="card" style="text-align:center"><h3>🎰 SLOTS</h3><div style="font-size:45px;padding:20px 0" id="slots">🍒 🍋 🍇</div><p id="slotMsg">Kanda SPIN!</p><input id="slotAmt" type="number" value="500"><button class="btn-main" onclick="spin()">SPIN 🎰</button></div>
+<div class="card"><h3>🎲 DICE</h3><button class="btn-main btn-yellow" onclick="dice()">ROLL DICE 🎲</button><p id="diceRes" style="text-align:center;margin-top:10px"></p></div>
 </div>
 
 <div id="wallet" class="page">
-<div class="card" style="text-align:center"><h3>💰 Balance Yawe</h3><h1 id="bal2" style="color:#00ff88">0 RWF</h1><p id="walletPhone" style="color:#aaa;font-size:13px"></p></div>
-<div class="card"><h3>📥 DEPOSIT - MTN MoMo</h3><input id="depAmt" type="number" placeholder="Amafaranga - ex: 5000"><input id="depPhone" type="tel" placeholder="Numero - 078XXXXXXX"><button class="btn-main" onclick="deposit()">DEPOSIT VIA MOMO →</button><p id="depMsg" style="margin-top:8px;font-size:13px"></p></div>
-<div class="card"><h3>📤 WITHDRAW</h3><input id="wdAmt" type="number" placeholder="Amafaranga"><input id="wdPhone" type="tel" placeholder="Numero MoMo"><button class="btn-main btn-yellow" style="color:#000" onclick="withdraw()">WITHDRAW →</button><p id="wdMsg" style="margin-top:8px;font-size:13px"></p></div>
-<div class="card"><h3>📜 Transaction History</h3><div id="txHist">Nta transaction...</div></div>
+<div class="card" style="text-align:center"><h3>💰 Balance Yawe</h3><h1 id="bal2" style="color:var(--main)">0 RWF</h1><p id="walletPhone" style="color:#aaa;font-size:13px"></p></div>
+<div class="card"><h3>📥 DEPOSIT - MTN MoMo</h3><input id="depAmt" type="number" placeholder="Amafaranga"><input id="depPhone" type="tel" placeholder="Numero"><button class="btn-main" onclick="deposit()">DEPOSIT VIA MOMO →</button><p id="depMsg" style="margin-top:8px;font-size:13px"></p></div>
+<div class="card"><h3>📤 WITHDRAW</h3><input id="wdAmt" type="number" placeholder="Amafaranga"><input id="wdPhone" type="tel" placeholder="Numero MoMo"><button class="btn-main btn-yellow" onclick="withdraw()">WITHDRAW →</button><p id="wdMsg" style="margin-top:8px;font-size:13px"></p></div>
+<div class="card"><h3>📜 Transactions</h3><div id="txHist">Nta transaction...</div></div>
 </div>
 
+<!-- ============ ADMIN SUPER PANEL ============ -->
 <div id="admin" class="page">
-<div class="card" style="background:#ff2a2a"><h3>👑 ADMIN PANEL</h3><p>Ureba abantu bose n'amafaranga</p></div>
-<div class="card"><h3>📊 Stats</h3><p>Total Users: <b id="aUsers">0</b></p><p>Total Balance mu System: <b id="aBal">0 RWF</b></p><p>Total Bets: <b id="aBets">0</b></p></div>
-<div class="card"><h3>👥 Abantu Bose</h3><div id="aList">Nta muntu...</div></div>
-<div class="card"><h3>🎁 Tanga Bonus</h3><input id="bonusPhone" placeholder="Numero y'uwo uha bonus"><input id="bonusAmt" type="number" placeholder="Amafaranga ya Bonus"><button class="btn-main" onclick="giveBonus()">TANGA BONUS →</button></div>
+<div class="card" style="background:#ff2a2a"><h3>👑 ADMIN CONTROL CENTER</h3><p>Ugenzura App yose hano!</p></div>
+
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px">
+<button class="tab-btn active" onclick="adminTab('aDesign',this)">🎨 Design</button>
+<button class="tab-btn" onclick="adminTab('aAds',this)">📢 Pub</button>
+<button class="tab-btn" onclick="adminTab('aMatches',this)">⚽ Imikino</button>
+<button class="tab-btn" onclick="adminTab('aUsers',this)">👥 Abakiriya</button>
+<button class="tab-btn" onclick="adminTab('aSettings',this)">⚙️ Settings</button>
+</div>
+
+<!-- DESIGN -->
+<div id="aDesign" class="admin-sec">
+<h3>🎨 Hindura Isura ya App</h3>
+<p>Izina rya App:</p><input id="cfgName" placeholder="Ex: BET RWANDA">
+<p>Ibala ry'ibanze (Main):</p><div class="color-row"><input type="color" id="cfgMain" value="#00ff88"><span>Green / Blue / Red - hitamo</span></div>
+<p>Ibala rya kabiri:</p><div class="color-row"><input type="color" id="cfgSecond" value="#ffcc00"><span>Yellow / Orange</span></div>
+<p>Bonus Title:</p><input id="cfgBonusTitle" placeholder="🎁 BONUS 100%!">
+<p>Bonus Description:</p><input id="cfgBonusDesc" placeholder="Deposit yawe ya mbere...">
+<p>Welcome Bonus (umuntu mushya ahabwa):</p><input id="cfgWelcome" type="number" placeholder="10000">
+<button class="btn-main" onclick="saveDesign()">💾 BIKA DESIGN → App ihinduka ako kanya!</button>
+<button class="btn-main" style="background:#ff5555;color:#fff" onclick="resetDesign()">↩ Subiza uko yari imeze</button>
+</div>
+
+<!-- ADS -->
+<div id="aAds" class="admin-sec" style="display:none">
+<h3>📢 Shyiramo Pub / Advertisement</h3>
+<p>Umutwe wa Pub:</p><input id="adTitle" placeholder="Ex: 🎉 BONUS Nshya! 200% - Kanda hano!">
+<p>Ibisobanuro:</p><textarea id="adDesc" placeholder="Andika icyo pub ivuga..."></textarea>
+<p>Ibala rya Pub:</p><input type="color" id="adColor" value="#ff2a2a">
+<p>Link yo kujyaho iyo bakandaye (optional):</p><input id="adLink" placeholder="https://...">
+<button class="btn-main" onclick="addAd()">➕ SHYIRAMO PUB →</button>
+<h4 style="margin-top:15px">Pub ziriho:</h4><div id="adsList"></div>
+</div>
+
+<!-- MATCHES -->
+<div id="aMatches" class="admin-sec" style="display:none">
+<h3>⚽ Ongeramo Umukino Mushya</h3>
+<input id="mTeam1" placeholder="Ikipe ya 1 - Ex: APR FC">
+<input id="mTeam2" placeholder="Ikipe ya 2 - Ex: Rayon Sports">
+<input id="mTime" placeholder="Igihe - Ex: 20:00 cyangwa LIVE">
+<input id="mOdd1" type="number" step="0.01" placeholder="Odd 1 - Ex: 1.85">
+<input id="mOddX" type="number" step="0.01" placeholder="Odd X - Ex: 3.20">
+<input id="mOdd2" type="number" step="0.01" placeholder="Odd 2 - Ex: 4.10">
+<button class="btn-main" onclick="addMatch()">➕ ONGERAMO UMUKINO →</button>
+<h4 style="margin-top:15px">Imikino iriho:</h4><div id="matchesListAdmin"></div>
+</div>
+
+<!-- USERS -->
+<div id="aUsers" class="admin-sec" style="display:none">
+<h3>👥 Abakiriya Bose - Urababona Byose</h3>
+<p>Total Users: <b id="aUsersCount">0</b> | Total Balance: <b id="aBal">0 RWF</b></p>
+<input id="searchUser" placeholder="🔍 Shakisha numero cyangwa izina..." oninput="renderAdminUsers()">
+<div id="aList"></div>
+<div class="card" style="margin-top:12px"><h4>🎁 Tanga Bonus</h4><input id="bonusPhone" placeholder="Numero y'uwo uha bonus"><input id="bonusAmt" type="number" placeholder="Amafaranga"><button class="btn-main" onclick="giveBonus()">TANGA BONUS →</button></div>
+</div>
+
+<!-- SETTINGS -->
+<div id="aSettings" class="admin-sec" style="display:none">
+<h3>⚙️ Settings za App</h3>
+<p>Min Deposit:</p><input id="cfgMinDep" type="number" placeholder="500">
+<p>Min Withdraw:</p><input id="cfgMinWd" type="number" placeholder="1000">
+<p>Max Aviator Multiplier:</p><input id="cfgMaxMulti" type="number" placeholder="10">
+<button class="btn-main" onclick="saveSettings()">💾 BIKA SETTINGS</button>
+<button class="btn-main" style="background:#ff5555;color:#fff" onclick="if(confirm('Urashaka gusiba abantu bose?')){localStorage.removeItem('br_users');location.reload()}">🗑 Siba Abantu Bose (Reset)</button>
+</div>
 </div>
 </div>
 
 <script>
-let isRegister=false;
-let user=null;
+let isRegister=false, user=null;
 let users=JSON.parse(localStorage.getItem('br_users')||'{}');
-let selBet=null, selOdd=0;
-let aviRunning=false, aviMulti=1, aviTimer=null, aviBet=0, aviCrashed=false;
+let config=JSON.parse(localStorage.getItem('br_config')||'{"name":"BET RWANDA","main":"#00ff88","second":"#ffcc00","bonusTitle":"🎁 BONUS 100%!","bonusDesc":"Deposit yawe ya mbere - tuguhaye double!","welcome":10000,"minDep":500,"minWd":1000,"maxMulti":10}');
+let ads=JSON.parse(localStorage.getItem('br_ads')||'[]');
+let matches=JSON.parse(localStorage.getItem('br_matches')||'[{"t1":"APR FC","t2":"Rayon Sports","time":"LIVE 65\'","o1":1.85,"ox":3.20,"o2":4.10},{"t1":"Man City","t2":"Arsenal","time":"20:00","o1":2.10,"ox":3.40,"o2":3.00},{"t1":"Real Madrid","t2":"Barcelona","time":"22:00","o1":2.50,"ox":3.60,"o2":2.80}]');
+let selBet=null, selOdd=0, aviRunning=false, aviMulti=1, aviTimer=null, aviBet=0, aviCrashed=false;
 
-function toggleAuth(){
-isRegister=!isRegister;
-document.getElementById('authTitle').innerText=isRegister?'📝 IYANDIKISHE':'🔐 INJIRA';
-document.getElementById('aName').style.display=isRegister?'block':'none';
-document.getElementById('authBtn').innerText=isRegister?'IYANDIKISHE →':'INJIRA →';
-document.getElementById('authToggle').innerText=isRegister?'Ufite account? Injira hano →':'Nta account ufite? Iyandikishe hano →';
+function applyConfig(){
+document.documentElement.style.setProperty('--main',config.main);
+document.documentElement.style.setProperty('--second',config.second);
+let n=config.name||'BET RWANDA';
+let parts=n.split(' ');
+document.getElementById('authLogo').innerHTML=n+' 🇷🇼';
+document.getElementById('topLogo').innerHTML=n+' 🇷🇼';
+document.getElementById('bonusTitle').innerText=config.bonusTitle;
+document.getElementById('bonusDesc').innerText=config.bonusDesc;
+document.getElementById('welcomeBonusTxt').innerText=config.welcome.toLocaleString()+' RWF BONUS';
+document.getElementById('cfgName').value=config.name;
+document.getElementById('cfgMain').value=config.main;
+document.getElementById('cfgSecond').value=config.second;
+document.getElementById('cfgBonusTitle').value=config.bonusTitle;
+document.getElementById('cfgBonusDesc').value=config.bonusDesc;
+document.getElementById('cfgWelcome').value=config.welcome;
+document.getElementById('cfgMinDep').value=config.minDep;
+document.getElementById('cfgMinWd').value=config.minWd;
+document.getElementById('cfgMaxMulti').value=config.maxMulti;
 }
+function saveConfig(){localStorage.setItem('br_config',JSON.stringify(config))}
+function saveDesign(){
+config.name=document.getElementById('cfgName').value||config.name;
+config.main=document.getElementById('cfgMain').value;
+config.second=document.getElementById('cfgSecond').value;
+config.bonusTitle=document.getElementById('cfgBonusTitle').value;
+config.bonusDesc=document.getElementById('cfgBonusDesc').value;
+config.welcome=parseInt(document.getElementById('cfgWelcome').value)||10000;
+saveConfig(); applyConfig(); alert('✅ Design yahindutse! Abantu bose bazabona isura nshya!');
+}
+function resetDesign(){config={name:"BET RWANDA",main:"#00ff88",second:"#ffcc00",bonusTitle:"🎁 BONUS 100%!",bonusDesc:"Deposit yawe ya mbere - tuguhaye double!",welcome:10000,minDep:500,minWd:1000,maxMulti:10}; saveConfig(); applyConfig(); alert('Yasubijwe!')}
+function saveSettings(){config.minDep=parseInt(document.getElementById('cfgMinDep').value)||500; config.minWd=parseInt(document.getElementById('cfgMinWd').value)||1000; config.maxMulti=parseInt(document.getElementById('cfgMaxMulti').value)||10; saveConfig(); alert('Settings zabitswe!')}
+function toggleAuth(){isRegister=!isRegister; document.getElementById('authTitle').innerText=isRegister?'📝 IYANDIKISHE':'🔐 INJIRA'; document.getElementById('aName').style.display=isRegister?'block':'none'; document.getElementById('authBtn').innerText=isRegister?'IYANDIKISHE →':'INJIRA →'; document.getElementById('authToggle').innerText=isRegister?'Ufite account? Injira hano →':'Nta account ufite? Iyandikishe hano →';}
 function doAuth(){
-let phone=document.getElementById('aPhone').value.trim();
-let pass=document.getElementById('aPass').value.trim();
-let name=document.getElementById('aName').value.trim();
+let phone=document.getElementById('aPhone').value.trim(); let pass=document.getElementById('aPass').value.trim(); let name=document.getElementById('aName').value.trim();
 if(!phone||!pass){alert('Uzuza numero na password');return}
-if(phone=='0780000000'&&pass=='admin123'){
-user={phone:phone,name:'ADMIN',balance:1000000,isAdmin:true};
-showApp(); return;
+if(phone=='0780000000'&&pass=='admin123'){user={phone:phone,name:'ADMIN',balance:1000000,isAdmin:true}; showApp(); return}
+if(isRegister){if(users[phone]){alert('Uyu numero yamaze kwiyandikisha!');return} users[phone]={name:name||'User '+phone,phone:phone,pass:pass,balance:config.welcome,hist:[],tx:['BONUS '+config.welcome+' RWF - Welcome'],blocked:false,joined:new Date().toLocaleDateString()}; localStorage.setItem('br_users',JSON.stringify(users)); alert('🎉 Wiyandikishije! Wabonye BONUS '+config.welcome+' RWF!')}
+let u=users[phone]; if(!u||u.pass!==pass){alert('Numero cyangwa password siyo!');return} if(u.blocked){alert('⛔ Account yawe yahagaritswe na Admin! Hamagara Admin.');return} user=u; showApp();
 }
-if(isRegister){
-if(users[phone]){alert('Uyu numero yamaze kwiyandikisha! Injira.');return}
-users[phone]={name:name||'User '+phone,phone:phone,pass:pass,balance:10000,hist:[],tx:['BONUS 10,000 RWF - Welcome']};
-localStorage.setItem('br_users',JSON.stringify(users));
-alert('🎉 Wiyandikishije! Wabonye BONUS 10,000 RWF!');
-}
-let u=users[phone];
-if(!u||u.pass!==pass){alert('Numero cyangwa password siyo!');return}
-user=u; showApp();
-}
-function showApp(){
-document.getElementById('authPage').style.display='none';
-document.getElementById('appPage').style.display='block';
-document.getElementById('userName').innerText='👤 '+(user.name||user.phone)+' | '+user.phone;
-document.getElementById('walletPhone').innerText=user.phone;
-if(user.isAdmin) document.getElementById('adminTab').style.display='block';
-updBal(); renderHist(); renderTx();
-if(user.isAdmin) renderAdmin();
-setInterval(()=>{document.getElementById('liveCount').innerText=1200+Math.floor(Math.random()*200); document.getElementById('liveMulti').innerText=(1+Math.random()*5).toFixed(2)+'x'},3000);
-}
-function saveUser(){
-if(user.isAdmin) return;
-users[user.phone]=user; localStorage.setItem('br_users',JSON.stringify(users));
-}
+function showApp(){document.getElementById('authPage').style.display='none'; document.getElementById('appPage').style.display='block'; document.getElementById('userName').innerText='👤 '+(user.name||user.phone)+' | '+user.phone; document.getElementById('walletPhone').innerText=user.phone; if(user.isAdmin) document.getElementById('adminTab').style.display='block'; updBal(); renderHist(); renderTx(); renderAds(); renderMatches(); applyConfig(); setInterval(()=>{document.getElementById('liveCount').innerText=1200+Math.floor(Math.random()*200); document.getElementById('liveMulti').innerText=(1+Math.random()*5).toFixed(2)+'x'},3000);}
+function saveUser(){if(user.isAdmin) return; users[user.phone]=user; localStorage.setItem('br_users',JSON.stringify(users));}
 function logout(){location.reload()}
-function showPage(id,btn){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
-if(btn) btn.classList.add('active');
-if(id=='admin') renderAdmin();
+function showPage(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById(id).classList.add('active'); document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(btn) btn.classList.add('active'); if(id=='admin') renderAdminUsers();}
+function adminTab(id,btn){['aDesign','aAds','aMatches','aUsers','aSettings'].forEach(x=>document.getElementById(x).style.display='none'); document.getElementById(id).style.display='block'; document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); if(id=='aUsers') renderAdminUsers(); if(id=='aAds') renderAdsAdmin(); if(id=='aMatches') renderMatchesAdmin();}
+function updBal(){document.getElementById('balTop').innerText='💰 '+user.balance.toLocaleString()+' RWF'; document.getElementById('bal2').innerText=user.balance.toLocaleString()+' RWF';}
+function addHist(t){if(user.isAdmin) return; user.hist.unshift(t); if(user.hist.length>15) user.hist.pop(); saveUser(); renderHist()}
+function renderHist(){if(user.isAdmin) return; document.getElementById('myHist').innerHTML=user.hist.length?user.hist.map(h=>'<div class="hist">'+h+'</div>').join(''):'Nta mateka...'}
+function addTx(t){if(user.isAdmin) return; user.tx.unshift(t); saveUser(); renderTx()}
+function renderTx(){if(user.isAdmin) return; document.getElementById('txHist').innerHTML=user.tx.length?user.tx.map(h=>'<div class="hist">'+h+'</div>').join(''):'Nta transaction...'}
+function renderAds(){let a=document.getElementById('adsArea'); if(!ads.length){a.innerHTML='';return} a.innerHTML=ads.map(ad=>'<div class="ad-banner" style="background:'+ad.color+'"><h3>'+ad.title+'</h3><p>'+ad.desc+'</p></div>').join('')}
+function addAd(){let t=document.getElementById('adTitle').value; let d=document.getElementById('adDesc').value; let c=document.getElementById('adColor').value; if(!t){alert('Andika umutwe wa Pub');return} ads.push({title:t,desc:d,color:c}); localStorage.setItem('br_ads',JSON.stringify(ads)); renderAds(); renderAdsAdmin(); alert('✅ Pub yashyizwe! Abantu bose bazayibona!'); document.getElementById('adTitle').value=''; document.getElementById('adDesc').value='';}
+function renderAdsAdmin(){document.getElementById('adsList').innerHTML=ads.length?ads.map((ad,i)=>'<div class="hist"><b>'+ad.title+'</b><br>'+ad.desc+'<br><button onclick="delAd('+i+')" style="background:#ff2a2a;color:#fff;border:none;padding:5px 10px;border-radius:6px;margin-top:5px">🗑 Siba</button></div>').join(''):'Nta Pub...'}
+function delAd(i){ads.splice(i,1); localStorage.setItem('br_ads',JSON.stringify(ads)); renderAds(); renderAdsAdmin();}
+function renderMatches(){document.getElementById('matchesArea').innerHTML=matches.map((m,i)=>'<div class="card"><p><b>'+m.t1+' vs '+m.t2+'</b> <span class="badge">'+m.time+'</span></p><div class="match"><span>'+m.t1+' (1)</span><div class="odds"><button onclick="addBet(this,\''+m.t1+'\','+m.o1+')">'+m.o1+'</button></div></div><div class="match"><span>Draw (X)</span><div class="odds"><button onclick="addBet(this,\'Draw '+m.t1+'\','+m.ox+')">'+m.ox+'</button></div></div><div class="match"><span>'+m.t2+' (2)</span><div class="odds"><button onclick="addBet(this,\''+m.t2+'\','+m.o2+')">'+m.o2+'</button></div></div></div>').join('')}
+function addMatch(){let t1=document.getElementById('mTeam1').value; let t2=document.getElementById('mTeam2').value; let tm=document.getElementById('mTime').value||'20:00'; let o1=parseFloat(document.getElementById('mOdd1').value)||1.85; let ox=parseFloat(document.getElementById('mOddX').value)||3.20; let o2=parseFloat(document.getElementById('mOdd2').value)||4.10; if(!t1||!t2){alert('Andika amakipe yombi');return} matches.push({t1:t1,t2:t2,time:tm,o1:o1,ox:ox,o2:o2}); localStorage.setItem('br_matches',JSON.stringify(matches)); renderMatches(); renderMatchesAdmin(); alert('✅ Umukino wongewe!');}
+function renderMatchesAdmin(){document.getElementById('matchesListAdmin').innerHTML=matches.map((m,i)=>'<div class="hist"><b>'+m.t1+' vs '+m.t2+'</b> - '+m.time+' - Odds: '+m.o1+' / '+m.ox+' / '+m.o2+' <button onclick="delMatch('+i+')" style="background:#ff2a2a;color:#fff;border:none;padding:4px 8px;border-radius:6px">🗑</button></div>').join('')}
+function delMatch(i){matches.splice(i,1); localStorage.setItem('br_matches',JSON.stringify(matches)); renderMatches(); renderMatchesAdmin();}
+function renderAdminUsers(){
+let q=(document.getElementById('searchUser')?.value||'').toLowerCase();
+let all=Object.values(users).filter(u=>(u.phone+u.name).toLowerCase().includes(q));
+document.getElementById('aUsersCount').innerText=Object.values(users).length;
+document.getElementById('aBal').innerText=Object.values(users).reduce((s,u)=>s+u.balance,0).toLocaleString()+' RWF';
+document.getElementById('aList').innerHTML=all.length?all.map(u=>'<div class="hist"><b>👤 '+u.name+'</b><br>📱 '+u.phone+' | 🔑 Pass: '+u.pass+'<br>💰 Balance: '+u.balance.toLocaleString()+' RWF | Bets: '+u.hist.length+'<br>📅 Yiyandikishije: '+(u.joined||'N/A')+' | '+(u.blocked?'⛔ YAHAGARITSWE':'✅ Akora')+'<br><b>Amateka:</b><br>'+(u.hist.slice(0,3).join('<br>')||'Nta...')+'<br><b>Transactions:</b><br>'+(u.tx.slice(0,3).join('<br>')||'Nta...')+'<br><div style="margin-top:8px;display:flex;gap:6px"><button onclick="toggleBlock(\''+u.phone+'\')" style="background:'+(u.blocked?'#00ff88':'#ff2a2a')+';color:#000;border:none;padding:6px 10px;border-radius:6px;font-weight:700">'+(u.blocked?'✅ Fungura':'⛔ Hagarika')+'</button><button onclick="addMoney(\''+u.phone+'\')" style="background:#ffcc00;border:none;padding:6px 10px;border-radius:6px;font-weight:700">💰 Ongeramo Amafaranga</button><button onclick="delUser(\''+u.phone+'\')" style="background:#333;color:#fff;border:none;padding:6px 10px;border-radius:6px">🗑 Siba</button></div></div>').join(''):'Nta muntu...';
 }
-function updBal(){
-document.getElementById('balTop').innerText='💰 '+user.balance.toLocaleString()+' RWF';
-document.getElementById('bal2').innerText=user.balance.toLocaleString()+' RWF';
-}
-function addHist(t){user.hist.unshift(t); if(user.hist.length>10) user.hist.pop(); saveUser(); renderHist()}
-function renderHist(){document.getElementById('myHist').innerHTML=user.hist.length?user.hist.map(h=>'<div class="hist">'+h+'</div>').join(''):'Nta mateka...'}
-function addTx(t){user.tx.unshift(t); saveUser(); renderTx()}
-function renderTx(){document.getElementById('txHist').innerHTML=user.tx.length?user.tx.map(h=>'<div class="hist">'+h+'</div>').join(''):'Nta transaction...'}
-function addBet(el,team,odd){
-document.querySelectorAll('.odds button').forEach(b=>b.classList.remove('sel'));
-el.classList.add('sel'); selBet=team; selOdd=odd;
-document.getElementById('slipCard').style.display='block';
-document.getElementById('slipTxt').innerText='Bet: '+team+' @ '+odd;
-}
-function placeBet(){
-if(!selBet) return;
-let amt=parseInt(document.getElementById('betAmt').value)||1000;
-if(amt>user.balance){alert('Amafaranga ntabwo ahagije!');return}
-user.balance-=amt; updBal(); saveUser();
-let win=Math.round(amt*selOdd);
-setTimeout(()=>{
-if(Math.random()>0.5){user.balance+=win;updBal();saveUser();alert('🎉 WATSINZE! '+win.toLocaleString()+' RWF'); addHist('⚽ '+selBet+' - WATSINZE +'+win+' RWF'); addTx('✅ WIN Sport +'+win+' RWF');}
-else{alert('😢 Watsinzwe. Gerageza nanone!'); addHist('⚽ '+selBet+' - Watsinzwe -'+amt+' RWF'); addTx('❌ LOSE Sport -'+amt+' RWF');}
-},800);
-document.getElementById('slipCard').style.display='none';
-}
-function startAvi(){
-if(aviRunning) return;
-aviBet=parseInt(document.getElementById('aviAmt').value)||500;
-if(aviBet>user.balance){alert('Amafaranga ntabwo ahagije!');return}
-user.balance-=aviBet; updBal(); saveUser();
-aviRunning=true; aviMulti=1; aviCrashed=false;
-document.getElementById('betBtn').disabled=true; document.getElementById('cashBtn').disabled=false;
-document.getElementById('aviMsg').innerText='Indege iriguruka... Cashout vuba!';
-let crashAt=1+Math.random()*8;
-aviTimer=setInterval(()=>{
-aviMulti+=0.08; document.getElementById('multi').innerText=aviMulti.toFixed(2)+'x';
-document.getElementById('plane').style.left=(20+aviMulti*12)+'px'; document.getElementById('plane').style.bottom=(20+aviMulti*10)+'px';
-if(aviMulti>=crashAt){crashAvi()}
-},100);
-}
-function crashAvi(){
-clearInterval(aviTimer); aviRunning=false; aviCrashed=true;
-document.getElementById('multi').innerText='💥 '+aviMulti.toFixed(2)+'x - IGWEE!';
-document.getElementById('aviMsg').innerText='💥 Indege yaguye! Watakaje '+aviBet+' RWF';
-document.getElementById('betBtn').disabled=false; document.getElementById('cashBtn').disabled=true;
-document.getElementById('plane').style.left='20px'; document.getElementById('plane').style.bottom='20px';
-addHist('✈️ Aviator '+aviMulti.toFixed(2)+'x - Watsinzwe -'+aviBet+' RWF'); addTx('❌ LOSE Aviator -'+aviBet+' RWF');
-}
-function cashOut(){
-if(!aviRunning||aviCrashed) return;
-clearInterval(aviTimer); aviRunning=false;
-let win=Math.round(aviBet*aviMulti); user.balance+=win; updBal(); saveUser();
-document.getElementById('multi').innerText='✅ '+aviMulti.toFixed(2)+'x';
-document.getElementById('aviMsg').innerText='🎉 WATSINZE '+win.toLocaleString()+' RWF!';
-document.getElementById('betBtn').disabled=false; document.getElementById('cashBtn').disabled=true;
-document.getElementById('plane').style.left='20px'; document.getElementById('plane').style.bottom='20px';
-addHist('✈️ Aviator '+aviMulti.toFixed(2)+'x - WATSINZE +'+win+' RWF'); addTx('✅ WIN Aviator +'+win+' RWF');
-}
-function spin(){
-let amt=parseInt(document.getElementById('slotAmt').value)||500;
-if(amt>user.balance){alert('Amafaranga ntabwo ahagije!');return}
-user.balance-=amt; updBal();
-let em=['🍒','🍋','🍇','💎','⭐','7️⃣'];
-let r1=em[Math.floor(Math.random()*em.length)], r2=em[Math.floor(Math.random()*em.length)], r3=em[Math.floor(Math.random()*em.length)];
-document.getElementById('slots').innerText=r1+' '+r2+' '+r3;
-if(r1==r2&&r2==r3){let w=amt*5;user.balance+=w;updBal();saveUser();document.getElementById('slotMsg').innerText='🎉 JACKPOT! '+w+' RWF!'; addHist('🎰 Slots JACKPOT +'+w+' RWF');}
-else if(r1==r2||r2==r3){let w=amt*2;user.balance+=w;updBal();saveUser();document.getElementById('slotMsg').innerText='🎉 Watsinze '+w+' RWF!'; addHist('🎰 Slots +'+w+' RWF');}
-else{document.getElementById('slotMsg').innerText='😢 Gerageza nanone!'; addHist('🎰 Slots -'+amt+' RWF');}
-saveUser();
-}
-function dice(){
-let amt=500; if(amt>user.balance){alert('Amafaranga ntabwo ahagije');return}
-user.balance-=amt; let n=Math.floor(Math.random()*100)+1;
-document.getElementById('diceRes').innerText='Numero: '+n;
-if(n>50){user.balance+=amt*2;document.getElementById('diceRes').innerText+=' - 🎉 WATSINZE '+amt*2+' RWF!'; addHist('🎲 Dice - WATSINZE +'+amt+' RWF');}
-else{document.getElementById('diceRes').innerText+=' - 😢 Watsinzwe'; addHist('🎲 Dice - Watsinzwe -'+amt+' RWF');}
-updBal(); saveUser();
-}
-function deposit(){
-let amt=parseInt(document.getElementById('depAmt').value);
-let phone=document.getElementById('depPhone').value;
-if(!amt||!phone){alert('Uzuza amafaranga na numero');return}
-document.getElementById('depMsg').innerText='📲 Oherejwe *182*... kuri '+phone+' Emeza...';
-setTimeout(()=>{user.balance+=amt;updBal();saveUser();addTx('📥 DEPOSIT +'+amt.toLocaleString()+' RWF - '+phone);document.getElementById('depMsg').innerText='✅ Deposit ya '+amt.toLocaleString()+' RWF yakozwe!';},2000);
-}
-function withdraw(){
-let amt=parseInt(document.getElementById('wdAmt').value);
-let phone=document.getElementById('wdPhone').value;
-if(!amt||!phone){alert('Uzuza byose');return}
-if(amt>user.balance){alert('Amafaranga ntabwo ahagije!');return}
-user.balance-=amt; updBal(); saveUser(); addTx('📤 WITHDRAW -'+amt.toLocaleString()+' RWF - '+phone);
-document.getElementById('wdMsg').innerText='✅ Withdraw ya '+amt.toLocaleString()+' RWF yoherejwe kuri '+phone+' (Demo)';
-}
-function renderAdmin(){
-let all=Object.values(users);
-document.getElementById('aUsers').innerText=all.length;
-document.getElementById('aBal').innerText=all.reduce((s,u)=>s+u.balance,0).toLocaleString()+' RWF';
-document.getElementById('aBets').innerText=all.reduce((s,u)=>s+u.hist.length,0);
-document.getElementById('aList').innerHTML=all.length?all.map(u=>'<div class="hist">👤 '+u.name+' | '+u.phone+' | 💰 '+u.balance.toLocaleString()+' RWF | Bets: '+u.hist.length+'</div>').join(''):'Nta muntu...';
-}
-function giveBonus(){
-let p=document.getElementById('bonusPhone').value.trim();
-let a=parseInt(document.getElementById('bonusAmt').value);
-if(!users[p]){alert('Uwo muntu ntabaho!');return}
-users[p].balance+=a; users[p].tx.unshift('🎁 BONUS +'+a+' RWF from Admin');
-localStorage.setItem('br_users',JSON.stringify(users));
-alert('Bonus yoherejwe!');
-renderAdmin();
-}
+function toggleBlock(p){users[p].blocked=!users[p].blocked; localStorage.setItem('br_users',JSON.stringify(users)); renderAdminUsers(); alert(users[p].blocked?'⛔ Yahagaritswe!':'✅ Yarafunguwe!')}
+function addMoney(p){let a=parseInt(prompt('Amafaranga wongeraho kuri '+p+'?','5000')); if(!a) return; users[p].balance+=a; users[p].tx.unshift('🎁 ADMIN yongeye +'+a+' RWF'); localStorage.setItem('br_users',JSON.stringify(users)); renderAdminUsers(); alert('✅ Yongerewe!')}
+function delUser(p){if(!confirm('Urashaka gusiba '+p+' burundu?')) return; delete users[p]; localStorage.setItem('br_users',JSON.stringify(users)); renderAdminUsers();}
+function giveBonus(){let p=document.getElementById('bonusPhone').value.trim(); let a=parseInt(document.getElementById('bonusAmt').value); if(!users[p]){alert('Uwo muntu ntabaho!');return} users[p].balance+=a; users[p].tx.unshift('🎁 BONUS +'+a+' RWF from Admin'); localStorage.setItem('br_users',JSON.stringify(users)); alert('Bonus yoherejwe!'); renderAdminUsers();}
+function addBet(el,team,odd){document.querySelectorAll('.odds button').forEach(b=>b.classList.remove('sel')); el.classList.add('sel'); selBet=team; selOdd=odd; document.getElementById('slipCard').style.display='block'; document.getElementById('slipTxt').innerText='Bet: '+team+' @ '+odd;}
+function placeBet(){if(!selBet) return; let amt=parseInt(document.getElementById('betAmt').value)||1000; if(amt>user.balance){alert('Amafaranga ntabwo ahagije!');return} user.balance-=amt; updBal(); saveUser(); let win=Math.round(amt*selOdd); setTimeout(()=>{if(Math.random()>0.5){user.balance+=win;updBal();saveUser();alert('🎉 WATSINZE! '+win.toLocaleString()+' RWF'); addHist('⚽ '+selBet+' - WATSINZE +'+win+' RWF'); addTx('✅ WIN Sport +'+win+' RWF');}else{alert('😢 Watsinzwe.'); addHist('⚽ '+selBet+' - Watsinzwe -'+amt+' RWF'); addTx('❌ LOSE Sport -'+amt+' RWF');}},800); document.getElementById('slipCard').style.display='none';}
+function startAvi(){if(aviRunning) return; aviBet=parseInt(document.getElementById('aviAmt').value)||500; if(aviBet>user.balance){alert('Amafaranga ntabwo ahagije!');return} user.balance-=aviBet; updBal(); saveUser(); aviRunning=true; aviMulti=1; aviCrashed=false; document.getElementById('betBtn').disabled=true; document.getElementById('cashBtn').disabled=false; document.getElementById('aviMsg').innerText='Indege iriguruka... Cashout vuba!'; let crashAt=1+Math.random()*config.maxMulti; aviTimer=setInterval(()=>{aviMulti+=0.08; document.getElementById('multi').innerText=aviMulti.toFixed(2)+'x'; document.getElementById('plane').style.left=(20+aviMulti*12)+'px'; document.getElementById('plane').style.bottom=(20+aviMulti*10)+'px'; if(aviMulti>=crashAt){crashAvi()}},100);}
+function crashAvi(){clearInterval(aviTimer); aviRunning=false; aviCrashed=true; document.getElementById('multi').innerText='💥 '+aviMulti.toFixed(2)+'x - IGWEE!'; document.getElementById('aviMsg').innerText='💥 Indege yaguye! Watakaje '+aviBet+' RWF'; document.getElementById('betBtn').disabled=false; document.getElementById('cashBtn').disabled=true; document.getElementById('plane').style.left='20px'; document.getElementById('plane').style.bottom='20px'; addHist('✈️ Aviator '+aviMulti.toFixed(2)+'x - Watsinzwe -'+aviBet+' RWF'); addTx('❌ LOSE Aviator -'+aviBet+' RWF');}
+function cashOut(){if(!aviRunning||aviCrashed) return; clearInterval(aviTimer); aviRunning=false; let win=Math.round(aviBet*aviMulti); user.balance+=win; updBal(); saveUser(); document.getElementById('multi').innerText='✅ '+aviMulti.toFixed(2)+'x'; document.getElementById('aviMsg').innerText='🎉 WATSINZE '+win.toLocaleString()+' RWF!'; document.getElementById('betBtn').disabled=false; document.getElementById('cashBtn').disabled=true; document.getElementById('plane').style.left='20px'; document.getElementById('plane').style.bottom='20px'; addHist('✈️ Aviator '+aviMulti.toFixed(2)+'x - WATSINZE +'+win+' RWF'); addTx('✅ WIN Aviator +'+win+' RWF');}
+function spin(){let amt=parseInt(document.getElementById('slotAmt').value)||500; if(amt>user.balance){alert('Amafaranga ntabwo ahagije!');return} user.balance-=amt; updBal(); let em=['🍒','🍋','🍇','💎','⭐','7️⃣']; let r1=em[Math.floor(Math.random()*em.length)], r2=em[Math.floor(Math.random()*em.length)], r3=em[Math.floor(Math.random()*em.length)]; document.getElementById('slots').innerText=r1+' '+r2+' '+r3; if(r1==r2&&r2==r3){let w=amt*5;user.balance+=w;updBal();saveUser();document.getElementById('slotMsg').innerText='🎉 JACKPOT! '+w+' RWF!'; addHist('🎰 Slots JACKPOT +'+w+' RWF');}else if(r1==r2||r2==r3){let w=amt*2;user.balance+=w;updBal();saveUser();document.getElementById('slotMsg').innerText='🎉 Watsinze '+w+' RWF!';}else{document.getElementById('slotMsg').innerText='😢 Gerageza nanone!';} saveUser();}
+function dice(){let amt=500; if(amt>user.balance){alert('Amafaranga ntabwo ahagije');return} user.balance-=amt; let n=Math.floor(Math.random()*100)+1; document.getElementById('diceRes').innerText='Numero: '+n; if(n>50){user.balance+=amt*2;document.getElementById('diceRes').innerText+=' - 🎉 WATSINZE '+amt*2+' RWF!'; addHist('🎲 Dice - WATSINZE +'+amt+' RWF');}else{document.getElementById('diceRes').innerText+=' - 😢 Watsinzwe';} updBal(); saveUser();}
+function deposit(){let amt=parseInt(document.getElementById('depAmt').value); let phone=document.getElementById('depPhone').value; if(!amt||!phone){alert('Uzuza byose');return} if(amt<config.minDep){alert('Min Deposit ni '+config.minDep+' RWF');return} document.getElementById('depMsg').innerText='📲 Oherejwe *182*... kuri '+phone+' Emeza...'; setTimeout(()=>{user.balance+=amt;updBal();saveUser();addTx('📥 DEPOSIT +'+amt.toLocaleString()+' RWF - '+phone);document.getElementById('depMsg').innerText='✅ Deposit ya '+amt.toLocaleString()+' RWF yakozwe!';},2000);}
+function withdraw(){let amt=parseInt(document.getElementById('wdAmt').value); let phone=document.getElementById('wdPhone').value; if(!amt||!phone){alert('Uzuza byose');return} if(amt<config.minWd){alert('Min Withdraw ni '+config.minWd+' RWF');return} if(amt>user.balance){alert('Amafaranga ntabwo ahagije!');return} user.balance-=amt; updBal(); saveUser(); addTx('📤 WITHDRAW -'+amt.toLocaleString()+' RWF - '+phone); document.getElementById('wdMsg').innerText='✅ Withdraw ya '+amt.toLocaleString()+' RWF yoherejwe kuri '+phone+' (Demo)';}
+applyConfig(); renderMatches();
 </script>
 </body>
 </html>
