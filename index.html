@@ -366,3 +366,204 @@ updStats();renderCourses();renderHist();renderCoursesAdmin();renderLessonsAdmin(
 </body>
 </html>
 ---
+<!-- ===== AI MWARIMU V2 - BYOSE - A+B+C ===== -->
+<button id="aiFab" onclick="openAI()" style="position:fixed;bottom:90px;right:14px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#7a2bff,#ff2a7a,#ffcc00);border:none;font-size:30px;z-index:999;box-shadow:0 4px 20px rgba(122,43,255,.7);cursor:pointer;animation:pulse 2s infinite">🤖</button>
+<style>@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}</style>
+<div class="modal" id="aiModal">
+<div class="modal-box" style="max-width:480px;height:92vh;display:flex;flex-direction:column;padding:0;overflow:hidden">
+<div style="background:linear-gradient(135deg,#7a2bff,#ff2a7a);padding:12px 14px;display:flex;justify-content:space-between;align-items:center">
+<div><h3 style="margin:0">🤖 AI MWARIMU V2</h3><p style="font-size:11px;opacity:.85;margin:0">🌐 Internet • 🐛 Kosora Code • 🔊 Ijwi - Kinyarwanda</p></div>
+<span class="close" onclick="closeAI()" style="position:static">✕</span>
+</div>
+<!-- TABS -->
+<div style="display:flex;background:#111;padding:6px;gap:4px">
+<button id="tabChat" onclick="aiTab('chat')" style="flex:1;background:#7a2bff;color:#fff;border:none;padding:9px;border-radius:8px;font-weight:800;cursor:pointer">💬 CHAT</button>
+<button id="tabFix" onclick="aiTab('fix')" style="flex:1;background:#222;color:#fff;border:none;padding:9px;border-radius:8px;font-weight:800;cursor:pointer">🐛 KOSORA CODE</button>
+<button id="tabVoice" onclick="aiTab('voice')" style="flex:1;background:#222;color:#fff;border:none;padding:9px;border-radius:8px;font-weight:800;cursor:pointer">🔊 IJWI</button>
+</div>
+<!-- CHAT TAB -->
+<div id="aiTabChat" style="flex:1;display:flex;flex-direction:column;overflow:hidden">
+<div style="padding:8px;display:flex;gap:5px;flex-wrap:wrap;background:#111">
+<button onclick="askQuick('Nyandikira Website yanjye ya mbere')" style="background:#222;color:#fff;border:none;padding:6px 10px;border-radius:20px;font-size:12px;cursor:pointer">🌐 Website</button>
+<button onclick="askQuick('Nyandikira Python Calculator')" style="background:#222;color:#fff;border:none;padding:6px 10px;border-radius:20px;font-size:12px;cursor:pointer">🐍 Python</button>
+<button onclick="askQuick('Password ikomeye ni iyihe?')" style="background:#222;color:#fff;border:none;padding:6px 10px;border-radius:20px;font-size:12px;cursor:pointer">🔐 Password</button>
+<button onclick="askQuick('Nigute nabona akazi ka Code?')" style="background:#222;color:#fff;border:none;padding:6px 10px;border-radius:20px;font-size:12px;cursor:pointer">💰 Akazi</button>
+</div>
+<div id="aiChat" style="flex:1;overflow:auto;padding:12px;background:#0f0f1a">
+<div style="background:#222;padding:10px;border-radius:12px;margin-bottom:8px;font-size:13px;line-height:1.5">👋 <b>Muraho! Ndi AI Mwarimu V2!</b><br><br>🌐 <b>Nzi byose</b> - Baza ikibazo cyose cya Code!<br>🐛 <b>Kosora Code</b> - Kanda tab ya 🐛<br>🔊 <b>Ijwi</b> - Kanda tab ya 🔊, AI ikuvugishe!<br><br>Andika hasi! 👇</div>
+</div>
+<div style="padding:10px;background:#1a1a26;display:flex;gap:8px">
+<input id="aiInput" placeholder="Baza AI ikibazo cyose..." onkeypress="if(event.key==='Enter')sendAI()" style="flex:1;margin:0">
+<button onclick="sendAI()" style="background:#7a2bff;color:#fff;border:none;padding:12px 16px;border-radius:10px;font-weight:900;cursor:pointer">➤</button>
+<button onclick="startVoiceInput()" style="background:#ff2a7a;color:#fff;border:none;padding:12px;border-radius:10px;cursor:pointer">🎤</button>
+</div>
+</div>
+<!-- FIX CODE TAB -->
+<div id="aiTabFix" style="flex:1;display:none;flex-direction:column;overflow:auto;padding:12px;background:#0f0f1a">
+<h3>🐛 AI IKOSORA CODE YAWE</h3>
+<p style="font-size:12px;color:#aaa">Shyiramo Code yawe yanze / itakora - AI ikayikosora!</p>
+<p style="font-size:12px;margin-top:10px">Uburyo bwa Code:</p>
+<select id="fixLang" style="margin:0"><option value="HTML">🌐 HTML</option><option value="CSS">🎨 CSS</option><option value="JavaScript">⚡ JavaScript</option><option value="Python">🐍 Python</option></select>
+<textarea id="fixCodeInput" placeholder="Shyiramo Code yawe hano...&#10;Ex:&#10;let x = 5&#10;console.log('Muraho)&#10;&#10;AI izakubwira aho ikosa riri!" style="min-height:140px;font-family:monospace"></textarea>
+<input id="fixError" placeholder="Error wabonye (optional) - Ex: Unexpected token">
+<button class="btn-main" style="background:#ff2a7a" onclick="fixCodeAI()">🤖 AI - KOSORA CODE YANJYE →</button>
+<div id="fixResult" style="background:#222;border-radius:10px;padding:12px;margin-top:10px;font-size:13px;line-height:1.6;display:none"></div>
+<button class="btn-main" id="fixCopyBtn" onclick="copyFixedCode()" style="display:none;background:#00c853">📋 COPY CODE YAKOSOWE →</button>
+<div style="background:#333;padding:10px;border-radius:10px;margin-top:10px;font-size:12px">💡 <b>Urugero rwa Code ifite ikosa:</b><br><button onclick="document.getElementById('fixCodeInput').value='let izina = Jean\nconsole.log(Muraho)'" style="background:#222;color:#fff;border:none;padding:6px 10px;border-radius:6px;margin-top:6px">Gerageza uru rugero →</button></div>
+</div>
+<!-- VOICE TAB -->
+<div id="aiTabVoice" style="flex:1;display:none;flex-direction:column;overflow:auto;padding:12px;background:#0f0f1a;text-align:center">
+<h3>🔊 AI IJWI - KINYARWANDA</h3>
+<p style="font-size:13px;color:#aaa">AI iravuga! Wowe uravuga, AI ikumva!</p>
+<div style="font-size:80px;margin:14px 0" id="voiceEmoji">🤖</div>
+<p id="voiceStatus" style="font-size:13px">Kanda hasi AI ikuvugishe...</p>
+<div style="background:#222;border-radius:12px;padding:12px;margin:10px 0;text-align:left;font-size:13px;line-height:1.6" id="voiceText">AI: Muraho! Ndi AI Mwarimu! Ushaka kwiga iki uyu munsi?</div>
+<button class="btn-main" style="background:#ff2a7a" onclick="speakAI('Muraho! Ndi AI Mwarimu wa Learn Code Rwanda. Nzi Code zose. HTML, CSS, JavaScript, Python, Cybersecurity. Baza ikibazo cyose, ndagufasha!')">🔊 AI - VUVUGA MURAHO →</button>
+<button class="btn-main" style="background:#7a2bff" onclick="startVoiceInput()">🎤 VUVUGA IKIBAZO CYAWE →</button>
+<button class="btn-main" style="background:#00c853" onclick="speakAI('HTML ni ururimi rukora Website. Buri Website ukunda - 【entity-Facebook¦canonical_name=Facebook】, Google - yose ikozwe muri HTML. Wiga HTML, uzaba ushobora gukora Website yawe!')">🎓 AI - NYIGISHE HTML →</button>
+<button class="btn-main" style="background:#ffcc00;color:#000" onclick="speakAI('Password ikomeye ifite inyuguti cumi na ebyiri, ifite inyuguti nini, nto, imibare, nibirango. Ntuzigire uha umuntu password yawe, ndetse niba yavuga ko ari MTN!')">🔐 AI - NYIGISHE PASSWORD →</button>
+<p style="font-size:11px;color:#888;margin-top:10px">⚠️ Ijwi rikora kuri Chrome / Android. Niba ridakora, koresha Chat.</p>
+<div style="text-align:left;background:#222;padding:10px;border-radius:10px;margin-top:10px"><h4>⚙️ Guhindura Ijwi:</h4><select id="voiceSelect" onchange="changeVoice()"><option value="0">Ijwi rya 1</option></select><input type="range" id="voiceSpeed" min="0.5" max="1.5" step="0.1" value="1" oninput="document.getElementById('voiceSpeedVal').innerText=this.value"><span id="voiceSpeedVal">1</span> - Umuvuduko</div>
+</div>
+</div>
+</div>
+*3.* Shakisha `// ===== AI MWARIMU` - Siba yose kugeza kuri `// INIT` - Simbuza iyi *AI V2 LOGIC YUZUYE:*
+// ===== AI MWARIMU V2 - BYOSE - A+B+C =====
+let fixedCodeResult='';
+let currentVoice=null;
+function openAI(){document.getElementById('aiModal').classList.add('open');loadVoices();}
+function closeAI(){document.getElementById('aiModal').classList.remove('open');if('speechSynthesis' in window)speechSynthesis.cancel();}
+function aiTab(tab){
+['chat','fix','voice'].forEach(t=>{
+document.getElementById('aiTab'+t.charAt(0).toUpperCase()+t.slice(1)).style.display=t==tab?'flex':'none';
+document.getElementById('tab'+t.charAt(0).toUpperCase()+t.slice(1)).style.background=t==tab?'#7a2bff':'#222';
+});
+if(tab=='voice')loadVoices();
+}
+function askQuick(q){aiTab('chat');document.getElementById('aiInput').value=q;sendAI();}
+function sendAI(){
+let inp=document.getElementById('aiInput');let q=inp.value.trim();if(!q)return;
+let chat=document.getElementById('aiChat');
+chat.innerHTML+='<div style="background:#7a2bff;padding:10px;border-radius:12px;margin-bottom:8px;font-size:13px;text-align:right">👤 '+q+'</div>';
+inp.value='';
+chat.innerHTML+='<div id="aiTyping" style="background:#222;padding:10px;border-radius:12px;margin-bottom:8px;font-size:13px">🤖 AI iri gutekereza... 🌐 Iri gushaka kuri Internet...</div>';
+chat.scrollTop=chat.scrollHeight;
+// 1. Gerageza Internet API (Ubuntu - Pollinations)
+fetch('https://text.pollinations.ai/'+encodeURIComponent('You are AI Mwarimu, a friendly coding teacher for Rwanda. Answer in Kinyarwanda mixed with simple English. User asks: '+q+' . Give short, clear answer with code example if needed. Use Kinyarwanda.'))
+.then(r=>r.text()).then(ans=>{
+document.getElementById('aiTyping')?.remove();
+if(ans&&ans.length>10&&!ans.includes('<!DOCTYPE')){
+chat.innerHTML+='<div style="background:#222;padding:12px;border-radius:12px;margin-bottom:8px;font-size:13px;line-height:1.6;white-space:pre-wrap">🤖 '+ans+'<br><br><button onclick="speakAI(\''+ans.replace(/'/g,"").substring(0,300)+'\')" style="background:#ff2a7a;color:#fff;border:none;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer">🔊 UMVA IJWI →</button></div>';
+}else{throw new Error('no internet');}
+chat.scrollTop=chat.scrollHeight;
+}).catch(e=>{
+// 2. Fallback - Local AI (Iyo Internet idakora)
+document.getElementById('aiTyping')?.remove();
+let ans=getAIAnswer(q);
+chat.innerHTML+='<div style="background:#222;padding:12px;border-radius:12px;margin-bottom:8px;font-size:13px;line-height:1.6;white-space:pre-wrap">🤖 '+ans+'<br><br><button onclick="speakAI(\''+ans.replace(/'/g,"").substring(0,300)+'\')" style="background:#ff2a7a;color:#fff;border:none;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer">🔊 UMVA IJWI →</button></div>';
+chat.scrollTop=chat.scrollHeight;
+});
+}
+function getAIAnswer(q){
+let s=q.toLowerCase();
+if(s.includes('muraho')||s.includes('hello')||s.includes('bite'))return "👋 Muraho!\n\nNdi AI Mwarimu! Nzi Code!\n\nUshaka kwiga iki?\n• HTML - Kora Website\n• CSS - Kora Website nziza\n• JavaScript - Kora App\n• Python - Porogaramu\n• Cybersecurity - Kwikingira\n\nAndika ex: 'Nyigisha HTML'";
+if(s.includes('html')&&s.includes('ni iki'))return "🌐 HTML NI IKI?\n\nHTML = HyperText Markup Language\nNi amagufwa ya Website!\n\nUrugero:\n<h1>Muraho!</h1>\n<p>Ndi kwiga Code!</p>\n\n<h1> = Umutwe\n<p> = Paragraphe";
+if(s.includes('website'))return "🌐 WEBSITE YAWE YA MBERE:\n\n<html>\n<head><title>Page Yanjye</title></head>\n<body>\n<h1>Muraho! Ndi Jean</h1>\n<p>Ndi kwiga Code!</p>\n<button onclick=\"alert('Muraho!')\">Kanda</button>\n</body>\n</html>";
+if(s.includes('bouton')||s.includes('button'))return "🔘 BOUTON:\n\n<button>Kanda Hano</button>\n\nCSS Itukura:\nbutton { background:#ff2a7a; color:white; padding:12px; border-radius:10px; }";
+if(s.includes('css')||s.includes('amabara'))return "🎨 CSS - AMABARA:\n\nh1 { color:#ff2a7a; font-size:30px; }\nbody { background:#0f0f1a; color:white; }";
+if(s.includes('javascript')||s.includes('js'))return "⚡ JAVASCRIPT = Ubwonko bwa Website!\n\nlet izina = 'Jean';\nif(imyaka >= 18){ console.log('Muraho '+izina); }";
+if(s.includes('python')&&s.includes('calculator'))return "🐍 PYTHON CALCULATOR:\n\nprint('CALCULATOR')\nnum1 = int(input('Numero 1: '))\nnum2 = int(input('Numero 2: '))\nprint('Guteranya:', num1+num2)";
+if(s.includes('python'))return "🐍 PYTHON = Ururimi rworoshye!\n\nprint('Muraho!')\n\nIkoreshwa muri AI, Website, Data!";
+if(s.includes('password'))return "🔐 PASSWORD IKOMEYE:\n\n❌ MBI: 123456, password, Izina\n✅ NZIZA: Rwanda@2026!Code (12+, A-Z, a-z, 0-9, !@#)\n\n⚠️ Ntuzagire password imwe kuri byose! Koresha 2FA!";
+if(s.includes('hacking')||s.includes('hacker'))return "🔐 ETHICAL HACKING:\n\n❌ BLACK HAT - Abiba - ABANYABYAHA!\n✅ WHITE HAT - Bafasha ibigo kwikingira - 1M-5M RWF/ukwezi!\n\nAsaba uruhushya Mbere, Ntibibe!";
+if(s.includes('kosa')||s.includes('itakora')||s.includes('error'))return "🐛 KOSA - REBA IBI 5:\n\n1. Wibagiwe ; ?\n2. Wibagiwe } cyangwa ) ?\n3. Izina ryanditse nabi? (Izina vs izina)\n4. Wibagiwe ' ' ?\n5. Soma Error - Irabwira aho ikosa riri!";
+if(s.includes('phishing')||s.includes('scam'))return "⚠️ SCAM:\nMTN NTIYOHEREZA link zo gutsindira amafaranga!\nNtugakande kuri link z'abantu utazi!";
+if(s.includes('game'))return "🎮 GAME:\n\nlet secret = 7;\nlet guess = prompt('Numero 1-10:');\nif(guess == secret){ alert('Watsinze!'); }";
+if(s.includes('amafaranga')||s.includes('akazi'))return "💰 AMAFARANGA:\n\nJunior: 300k-500k RWF\nMid: 500k-1M\nSenior: 1M-2.5M\nFreelancer: 2M-5M\n\nRangiza Courses, Kora Projects 3, Tangira gushaka akazi!";
+return "🤖 NAKUMVISE: '"+q+"'\n\nNdi AI - Gerageza kubaza:\n• 'Nyandikira bouton itukura'\n• 'HTML ni iki?'\n• 'Kuki code yanjye itakora?'\n• 'Nyandikira Python Calculator'\n\nCyanga jya muri Courses - hari Lessons zuzuye!";
+}
+// --- B. KOSORA CODE ---
+function fixCodeAI(){
+let code=document.getElementById('fixCodeInput').value.trim();
+let lang=document.getElementById('fixLang').value;
+let err=document.getElementById('fixError').value.trim();
+if(!code){showToast('❌ Shyiramo Code!');return;}
+let res=document.getElementById('fixResult');res.style.display='block';
+res.innerHTML='🤖 AI iri gukosora Code yawe... Tegereza...';
+document.getElementById('fixCopyBtn').style.display='none';
+// 1. Local Fix - Amakosa asanzwe
+let fixed=code;let issues=[];
+if(!fixed.includes(';')&&lang=='JavaScript')issues.push('⚠️ Wibagiwe ; nyuma ya buri line');
+if((fixed.match(/\(/g)||[]).length!=(fixed.match(/\)/g)||[]).length)issues.push('⚠️ ( na ) ntibingana - Wibagiwe )');
+if((fixed.match(/\{/g)||[]).length!=(fixed.match(/\}/g)||[]).length)issues.push('⚠️ { na } ntibingana - Wibagiwe }');
+if((fixed.match(/'/g)||[]).length%2!=0||(fixed.match(/"/g)||[]).length%2!=0)issues.push("⚠️ Wibagiwe ' cyangwa \" - Reba niba buri ' ifite '");
+if(fixed.includes('console.log(')&&!fixed.includes(')'))issues.push('⚠️ console.log( ntabwo ifunze');
+if(lang=='Python'&&fixed.includes(';'))issues.push('⚠️ Python NTIKORESHA ; - Kuraho ;');
+// Gerageza gukosora byikora
+if(lang=='JavaScript'||lang=='HTML'){
+if((fixed.match(/\(/g)||[]).length>(fixed.match(/\)/g)||[]).length)fixed+=')';
+if((fixed.match(/\{/g)||[]).length>(fixed.match(/\}/g)||[]).length)fixed+='\n}';
+if(fixed.includes("console.log('")&&!fixed.includes("')"))fixed=fixed.replace("console.log('","console.log('")+"')";
+}
+if(fixed.includes('let izina = Jean')){fixed=fixed.replace('let izina = Jean',"let izina = 'Jean';");issues.push("⚠️ Jean igomba kuba muri ' ' - Kuko ni Text, si numero!");}
+if(fixed.includes('console.log(Muraho)')){fixed=fixed.replace('console.log(Muraho)',"console.log('Muraho')");issues.push("⚠️ Muraho igomba kuba muri ' ' !");}
+fixedCodeResult=fixed;
+// 2. Gerageza Internet AI nanone
+fetch('https://text.pollinations.ai/'+encodeURIComponent('You are a coding teacher. User has this '+lang+' code with error: '+err+'. Code: '+code+'. Fix it, explain in Kinyarwanda what was wrong, and give corrected code. Short answer.'))
+.then(r=>r.text()).then(aiAns=>{
+if(aiAns&&aiAns.length>20&&!aiAns.includes('<!DOCTYPE')){
+res.innerHTML='<b>🤖 AI YAKOSOYE - INTERNET:</b><br><br>'+aiAns.replace(/\n/g,'<br>')+'<br><br><b>✅ CODE YAKOSOWE:</b><br><pre style="background:#000;color:#00ff88;padding:10px;border-radius:8px;white-space:pre-wrap">'+fixed+'</pre>';
+}else{throw new Error('fallback');}
+document.getElementById('fixCopyBtn').style.display='block';
+showToast('✅ Code yakosowe!');
+}).catch(e=>{
+let html='<b>🤖 AI YASUYE CODE YAWE:</b><br><br>';
+if(issues.length)html+='<b>🐛 Amakosa yabonetse:</b><br>'+issues.join('<br>')+'<br><br>';
+else html+='✅ Nta kosa rinini ribonetse - Ariko reba niba izina ryanditse neza!<br><br>';
+html+='<b>✅ CODE YAKOSOWE:</b><br><pre style="background:#000;color:#00ff88;padding:10px;border-radius:8px;white-space:pre-wrap">'+fixed+'</pre><br><b>💡 Inama:</b> Copy iyi Code, uyishyire muri Try It Yourself, ukanze RUN!';
+res.innerHTML=html;
+document.getElementById('fixCopyBtn').style.display='block';
+showToast('✅ Code yakosowe!');
+});
+}
+function copyFixedCode(){
+if(!fixedCodeResult){showToast('Nta Code yakosowe!');return;}
+navigator.clipboard.writeText(fixedCodeResult).then(()=>showToast('✅ Code yakosowe - COPIED! Shyira muri Try It!'));
+}
+// --- C. IJWI - KINYARWANDA ---
+function loadVoices(){
+if(!('speechSynthesis' in window))return;
+let voices=speechSynthesis.getVoices();
+let sel=document.getElementById('voiceSelect');if(!sel)return;
+sel.innerHTML=voices.map((v,i)=>'<option value="'+i+'">'+v.name+' ('+v.lang+')</option>').join('')||'<option value="0">Ijwi rya 1</option>';
+}
+if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=loadVoices;}
+function changeVoice(){let idx=parseInt(document.getElementById('voiceSelect').value||0);let voices=speechSynthesis.getVoices();currentVoice=voices[idx]||null;}
+function speakAI(text){
+if(!('speechSynthesis' in window)){showToast('❌ Ijwi ntirikora kuri iyi Browser - Koresha Chrome!');return;}
+speechSynthesis.cancel();
+let u=new SpeechSynthesisUtterance(text);
+u.lang='rw-RW';u.rate=parseFloat(document.getElementById('voiceSpeed')?.value||1);
+if(currentVoice)u.voice=currentVoice;
+else{let voices=speechSynthesis.getVoices();let rw=voices.find(v=>v.lang.includes('rw')||v.lang.includes('sw')||v.lang.includes('fr'));if(rw)u.voice=rw;}
+u.onstart=()=>{document.getElementById('voiceEmoji').innerText='🗣️';document.getElementById('voiceStatus').innerText='🔊 AI iri kuvuga...';document.getElementById('voiceText').innerText='AI: '+text;};
+u.onend=()=>{document.getElementById('voiceEmoji').innerText='🤖';document.getElementById('voiceStatus').innerText='✅ AI yarangije kuvuga - Kanda nanone!';};
+speechSynthesis.speak(u);
+}
+function startVoiceInput(){
+if(!('webkitSpeechRecognition' in window||'SpeechRecognition' in window)){showToast('❌ Ijwi ryo kumva ntirikora - Andika hasi!');return;}
+let Rec=window.SpeechRecognition||window.webkitSpeechRecognition;
+let rec=new Rec();rec.lang='rw-RW';rec.interimResults=false;
+document.getElementById('voiceEmoji').innerText='🎤';
+document.getElementById('voiceStatus').innerText='🎤 Vuga nonaha... Ndakumva...';
+rec.onresult=(e)=>{
+let txt=e.results[0][0].transcript;
+document.getElementById('voiceStatus').innerText='✅ Numvise: "'+txt+'" - AI iri gusubiza...';
+document.getElementById('voiceText').innerText='Wowe: '+txt;
+aiTab('chat');document.getElementById('aiInput').value=txt;sendAI();
+speakAI('Numvise ubaza '+txt+'. Reka ngusubize.');
+};
+rec.onerror=()=>{document.getElementById('voiceStatus').innerText='❌ Ntago numvise neza - Gerageza nanone!';document.getElementById('voiceEmoji').innerText='🤖';};
+rec.onend=()=>{document.getElementById('voiceEmoji').innerText='🤖';};
+rec.start();
+}
